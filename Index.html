@@ -1,0 +1,165 @@
+ <!DOCTYPE HTML>
+ <html lang="pt-BR">
+ <head>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<title>Jogo de Cartas</title>
+</head>
+<style>
+@font-face {
+	font-family: 'RobotoMono';
+}
+
+*{
+	font-family: 'RobotoMono', monospace;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: black;
+  padding: 0;
+  margin: 0;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center; 
+  width: 960px;	
+  height: 100vh;
+  color: #FFF;
+  background-color: green;
+  padding: 0;
+  margin: 0;		
+}
+
+#carta {
+  position: absolute;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background-color: #f0f0f0;  
+  border-radius: 15px;
+  border: 1px solid #b4b4b4; 
+  width: 200px;
+  height: 320px;  
+}
+
+#carta2 {
+  position: absolute;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background-color: #f0f0f0;  
+  border-radius: 15px;
+  border: 1px solid #b4b4b4; 
+  width: 200px;
+  height: 320px;  
+}
+
+#figura {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  align-content: center;
+  border: 1px solid #787878; 
+  width: 160px;
+  height: 260px; 
+  font-size: 150px;
+  color: #ff0000;
+}
+
+#figura2 {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  align-content: center;
+  border: 1px solid #787878; 
+  width: 160px;
+  height: 260px; 
+  font-size: 150px;
+  color: #ff0000;
+}
+
+#naipe {
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start;
+  width: 40px;
+  height: 320px;
+  font-size: 40px;
+  color: #ff0000; 
+}
+
+#naipe2 {
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start;
+  width: 40px;
+  height: 320px;
+  font-size: 40px;
+  color: #ff0000; 
+}
+
+#naipebotton {
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start; 
+  width: 40px;
+  height: 320px;
+  font-size: 40px;
+  color: #ff0000;
+  -moz-transform:rotate(-180deg); /* Firefox */
+  -webkit-transform:rotate(-180deg); /* Webkit */        
+  -ms-transform:rotate(-180deg); /* IE */
+  -o-transform:rotate(-180deg); /* Opera */
+  transform:rotate(-180deg); /* future */  
+}
+
+#naipebotton2 {
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start; 
+  width: 40px;
+  height: 320px;
+  font-size: 40px;
+  color: #ff0000;
+  -moz-transform:rotate(-180deg); /* Firefox */
+  -webkit-transform:rotate(-180deg); /* Webkit */        
+  -ms-transform:rotate(-180deg); /* IE */
+  -o-transform:rotate(-180deg); /* Opera */
+  transform:rotate(-180deg); /* future */  
+}
+</style>
+
+<body>
+
+<div id="container">
+<h1>Click para dar as cartas!</h1>
+<p id = "msg">Bem vindo!</p>
+<p id = "msg1">Bem vindo!</p>
+
+<div onclick="myMove()" id="carta2">
+<div id="naipebotton2">&#9884 </div>
+<div id="figura2">&#9884 </div>
+<div id="naipe2">&#9884 </div>
+</div> 
+
+<div onclick="myMove()" id="carta">
+<div id="naipebotton">&#9884 </div>
+<div id="figura">&#9884 </div>
+<div id="naipe">&#9884 </div>
+</div>
+</div>
+
+<script src="array.js"></script>
+</body>
+</html>
+
+
+
+
+
