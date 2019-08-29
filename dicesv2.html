@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+<title>Dices Slot</title>
+</head>
+<style>
+@font-face {
+	font-family: 'Luckiest Guy';
+}
+
+*{
+	font-family: 'Luckiest Guy', cursive;
+}
+body {
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+   
+}
+#cred {
+  text-shadow: 0 0 3px red, 0 0 6px blue;
+  color: gold;
+}
+#frame {
+  background-color: AliceBlue;
+  background-image: linear-gradient(red, yellow, blue);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center; 
+  border-radius: 15px;
+  width: 810px;
+  height: 750px;
+}
+#display {
+  text-shadow: 0 0 3px red, 0 0 6px blue;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center; 
+  color: white;
+  margin: 1px;
+  padding: 0;
+  width: 750px;
+  height: 200px;
+  font-size: 150px;
+  text-align: center;
+}
+.card {
+  background-color: rgba(0, 0, 0, 0.2);
+  text-shadow: 0 0 3px red, 0 0 6px blue;
+  display: flex;
+  align-content: center;
+  justify-content: center; 
+  color: gold;
+  margin: 1px;
+  padding: 0;
+  width: 200px;
+  height: 250px;
+  font-size: 250px;
+  text-align: center;
+  
+}
+button{
+  background-color: green;
+  align-content: center;
+  color: white;
+  margin: 1px;
+  font-size: 40px;
+  text-align: center;
+}
+#btn{
+  background-color: red;
+}
+#jackpot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-style: solid;
+  border-width: 5px;
+  color: white;
+  font-size: 40px;
+  width: 810px;
+  height: 80px;
+}
+#coin{
+  background-color: gold;
+  text-shadow: 0 0 3px red, 0 0 6px blue;
+}
+
+</style>
+
+<body>
+<div id="jackpot"><h1 >JackPot!</h1></div>
+<div id="frame">
+<h1 id="cred">0 Créditos!</h1>
+<div id="display" >Welcome!</div>
+<div id="cd1" class="card">?</div>
+<div id="cd2" class="card">?</div>
+<div id="cd3" class="card">?</div>
+<div id="cd4" class="card">?</div>
+<button id="try" type="button" onclick="doPlay()">Try it</button>
+<button id="btn" type="button" >stop</button>
+</div>
+<div><button id="coin"  type="button" onclick="coinPay(5)">$5$</button>
+<button id="coin" type="button" onclick="coinPay(10)">$10$</button>
+<button id="coin" type="button" onclick="coinPay(25)">$25$</button></div>
+
+<script>
+var myVar;
+isClicked = false;
+chance = 0;
+pot = 100;
+jPot = document.getElementById("jackpot");
+jPot.innerHTML = "JackPot: $"+pot+"!";
+
+function coinPay(a) {
+	chance += a;
+	credito = document.getElementById("cred");
+	credito.innerHTML = chance+" créditos!";
+	alert("Você recarregou $"+a+" créditos!");
+};
+function doPlay() {
+  isClicked = true;
+  if (chance <= 0) {
+	mostra.innerHTML = "GAME OVER!";
+	credito.innerHTML = chance+" créditos!";
+	clearTimeout(myVar);
+  }else {
+	var p = doRoll();
+	credito = document.getElementById("cred");
+	credito.innerHTML = chance+" créditos!";
+    chance -= 1;
+	pot += 1;	
+    console.log(chance);
+
+   if (isClicked == true) {
+		var btnTry = document.getElementById("try");
+		btnTry.style.backgroundColor = "grey";
+		btnTry.disabled = true;		
+   }
+	if (face == face1 && face2 == face3 && face1 != face2 ) {
+		chance += 4;
+		pot -=4;
+	}else if (face != face1 && face1 == face2 && face2 != face3) {
+		chance += 1;
+		pot -=1;
+	}else if (face != face1 && face1 == face2 && face2 == face3) {
+		chance += 3;
+		pot -=3;
+	}else if (face == face1 && face1 == face2 && face2 == face3) {
+		chance += 5;
+		pot -=5;
+	}else if (face == face1 && face1 == face2 && face2 != face3) {
+		chance += 3;
+		pot -=3;
+	}else if (face == face2 && face1 == face3 && face2 != face3) {
+		chance += 2;
+		pot -=2;
+	}else if (face == face3 && face1 == face2 && face2 != face3) {	
+		chance += 2;
+		pot -=2;
+	}else if (face == face1 && face1 != face2 && face2 != face3) {		
+		chance += 1;
+		pot -=1;
+	} else {
+		
+	} 
+  }
+};
+
+function doRoll() {
+ var faces = ['&#9856','&#9857','&#9858','&#9859','&#9860','&#9861'];
+ elem1 = document.getElementById("cd1");
+ elem2 = document.getElementById("cd2");
+ elem3 = document.getElementById("cd3");
+ elem4 = document.getElementById("cd4");
+ mostra = document.getElementById("display");
+ 
+ face = Math.floor(Math.random()*faces.length);
+ face1 = Math.floor(Math.random()*faces.length);
+ face2 = Math.floor(Math.random()*faces.length);
+ face3 = Math.floor(Math.random()*faces.length);
+
+ elem1.innerHTML = faces[face];
+ elem2.innerHTML = faces[face1];
+ elem3.innerHTML = faces[face2];
+ elem4.innerHTML = faces[face3];
+ 
+ elem1.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+ elem2.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+ elem3.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+ elem4.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+ mostra.style.fontSize = "50px";
+ mostra.innerHTML = "Boa sorte!";
+
+ myVar = setTimeout(doRoll, 200);
+ 
+ var li = document.getElementById("btn");
+ li.addEventListener("click", function(event) {
+	if (chance <= 0) {
+	mostra.innerHTML = "GAME OVER!";
+	credito.innerHTML = chance+" créditos!";
+	clearTimeout(myVar);
+    }else {
+    console.log(face, face1, face2, face3);
+	var para = myStopFunction();
+	if (face == face1 && face2 == face3 && face1 != face2 ) {
+		mostra.innerHTML = "Dois pares! Parabéns, você ganhou um crédito!";
+		elem1.style.backgroundColor = "red";
+		elem2.style.backgroundColor = "red";
+		elem3.style.backgroundColor = "blue";
+		elem4.style.backgroundColor = "blue";
+	}else if (face != face1 && face1 == face2 && face2 != face3) {
+		mostra.innerHTML = "Um Par! Parabéns, você ganhou 1 crédito!";
+		elem2.style.backgroundColor = "red";
+		elem3.style.backgroundColor = "red";
+	}else if (face != face1 && face1 == face2 && face2 == face3) {
+		mostra.innerHTML = "Outro Trio! Parabéns, você ganhou 3 créditos!";
+		elem2.style.backgroundColor = "red";
+		elem3.style.backgroundColor = "red";
+		elem4.style.backgroundColor = "red";
+	}else if (face == face1 && face1 == face2 && face2 == face3) {
+		mostra.innerHTML = "Uma Quadra! Parabéns, você ganhou o maior prêmio!";
+		elem1.style.backgroundColor = "red";
+		elem2.style.backgroundColor = "red";
+		elem3.style.backgroundColor = "red";
+		elem4.style.backgroundColor = "red";
+	}else if (face == face1 && face1 == face2 && face2 != face3) {
+		mostra.innerHTML = "Um Trio! Parabéns, você ganhou 3 créditos!";
+		elem1.style.backgroundColor = "red";
+		elem2.style.backgroundColor = "red";
+		elem3.style.backgroundColor = "red";
+	}else if (face == face2 && face1 == face3 && face2 != face3) {
+		mostra.innerHTML = "Pares trocados! Parabéns, você ganhou 2 crédito!";
+		elem1.style.backgroundColor = "red";
+		elem2.style.backgroundColor = "blue";
+		elem3.style.backgroundColor = "red";
+		elem4.style.backgroundColor = "blue";
+	}else if (face == face3 && face1 == face2 && face2 != face3) {
+		mostra.innerHTML = "Pares Ordenados! Parabéns, você ganhou 2 crédito!";
+		elem1.style.backgroundColor = "blue";
+		elem2.style.backgroundColor = "red";
+		elem3.style.backgroundColor = "red";
+		elem4.style.backgroundColor = "blue";
+	}else if (face == face1 && face1 != face2 && face2 != face3) {
+		mostra.innerHTML = "Par Simples! Parabéns, você ganhou 1 crédito!";
+		elem1.style.backgroundColor = "red";
+		elem2.style.backgroundColor = "red";
+	} else {
+		mostra.innerHTML = "Não ganhou nenhum prêmio!";
+	} 
+    }
+    })
+};
+function myStopFunction() {
+  isClicked = false;
+  clearTimeout(myVar);
+  if (isClicked == false) {
+		var btnTry = document.getElementById("try");
+		btnTry.style.backgroundColor = "green";
+		btnTry.disabled = false;
+		jPot.innerHTML = "JackPot: $"+pot+"!";
+   }
+}
+
+</script>
+</body>
+</html>
